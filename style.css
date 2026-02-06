@@ -1,0 +1,84 @@
+:root {
+  --bg: #0f1220;
+  --card: #181c3a;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+.app {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.header, .footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.click-area {
+  display: grid;
+  place-items: center;
+  margin: 20px 0;
+}
+
+.click-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.click-btn img {
+  width: 256px;
+  height: 256px;
+  border-radius: 12px;
+}
+
+.shop .upgrade {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.shop button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.skin-grid {
+  max-height: 240px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.skin-grid img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.skin-locked {
+  filter: grayscale(1) brightness(.5);
+}
+
