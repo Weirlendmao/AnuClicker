@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0d0d1a, #070710);
+  color: #ffffff;
+}
+
+.app {
+  max-width: 480px;
+  margin: auto;
+  padding: 14px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: linear-gradient(145deg, #1f1f33, #141425);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.card h3 {
+  margin: 0 0 12px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ===== SCORE ===== */
+#score {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+/* ===== CLICK BUTTON ===== */
+.click-btn {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.click-btn img {
+  width: 200px;
+  height: 200px;
+  border-radius: 22px;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.6),
+    inset 0 0 0 2px rgba(255,255,255,0.05);
+  transition: transform 0.08s ease;
+}
+
+.click-btn:active img {
+  transform: scale(0.92);
+}
+
+/* ===== BUTTON ===== */
+button {
+  background: linear-gradient(145deg, #ff8a00, #ffb347);
+  border: none;
+  border-radius: 14px;
+  padding: 8px 14px;
+  font-weight: 700;
+  color: #1a0f00;
+  cursor: pointer;
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== UPGRADE & TALENT ===== */
+.upgrade,
+.talent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: linear-gradient(145deg, #252544, #1a1a30);
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+/* ===== SKIN GRID (4x4 horizontal) ===== */
+.skin-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-columns: calc(100% / 4);
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x mandatory;
+}
+
+.skin-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.skin-grid img.locked {
+  filter: grayscale(1) brightness(0.35);
+}
+
+/* ===== REWARD VIDEO ===== */
+#rewardGrid {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 10px;
+  scroll-behavior: smooth;
+}
+
+.reward-item {
+  min-width: 140px;
+  height: 200px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.reward-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+.reward-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  background: rgba(0,0,0,0.45);
+}
+
+/* ===== FLOATING TEXT ===== */
+.floating {
+  position: fixed;
+  pointer-events: none;
+  color: #ffd27d;
+  font-weight: 800;
+  animation: floatUp 1s ease forwards;
+  z-index: 9999;
+}
+
+@keyframes floatUp {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-40px); }
+}
+
+/* ===== MODAL VIDEO ===== */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-box {
+  background: #000;
+  padding: 12px;
+  border-radius: 16px;
+  width: 90%;
+}
+
+.video-box video {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===== INPUT ===== */
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 6px;
+}

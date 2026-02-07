@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Idle Clicker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- MAIN -->
+  <div class="card">
+    <h3>Score</h3>
+    <div class="score" id="score">0</div>
+
+    <div class="click-area">
+      <button class="click-btn" onclick="clickObject(event)">
+        <img id="mainSkin" src="images/skin_0.jpg">
+      </button>
+    </div>
+
+    <div class="cps">
+      Auto / detik: <span id="cps">0</span>
+    </div>
+  </div>
+
+  <!-- UPGRADE -->
+  <div class="card shop">
+    <h3>Upgrade</h3>
+
+    <div class="upgrade"><span>Foto Bugil</span><button onclick="buyUpgrade('cursor')"><span id="cursorCost">15</span></button></div>
+    <div class="upgrade"><span>Hotel Oyo</span><button onclick="buyUpgrade('oyo')"><span id="oyoCost">75</span></button></div>
+    <div class="upgrade"><span>LC</span><button onclick="buyUpgrade('lc')"><span id="lcCost">250</span></button></div>
+    <div class="upgrade"><span>Beli Dildo</span><button onclick="buyUpgrade('beli')"><span id="beliCost">750</span></button></div>
+    <div class="upgrade"><span>Sewa Lonte</span><button onclick="buyUpgrade('sewa')"><span id="sewaCost">2000</span></button></div>
+    <div class="upgrade"><span>Bikin Video Blowjob</span><button onclick="buyUpgrade('bikin')"><span id="bikinCost">3000</span></button></div>
+    <div class="upgrade"><span>Video Remas TeTe</span><button onclick="buyUpgrade('remas')"><span id="remasCost">5000</span></button></div>
+    <div class="upgrade"><span>Kontolmu Dikocokin</span><button onclick="buyUpgrade('dikocokin')"><span id="dikocokinCost">10000</span></button></div>
+    <div class="upgrade"><span>Remasin TeTe sampai basah</span><button onclick="buyUpgrade('basah')"><span id="basahCost">50000</span></button></div>
+    <div class="upgrade"><span>Cum Tribute</span><button onclick="buyUpgrade('tribute')"><span id="tributeCost">100000</span></button></div>
+    <div class="upgrade"><span>Mabuk Bareng</span><button onclick="buyUpgrade('bareng')"><span id="barengCost">250000</span></button></div>
+    
+    
+  </div>
+
+  <!-- TALENT -->
+  <div class="card shop">
+    <h3>Lonte-Lonte (3× Crot)</h3>
+    <div id="talentList"></div>
+  </div>
+
+  <!-- SKIN -->
+  <div class="card shop">
+    <h3>Skin Select</h3>
+    <label>
+      <input type="checkbox" id="skinFilter" onchange="renderSkins()">
+      Unlocked only
+    </label>
+    <div id="skinGrid" class="skin-grid"></div>
+  </div>
+
+  <!-- SECRET SKIN -->
+  <div class="card shop">
+    <h3>Secret Skin</h3>
+    <div id="secretSkinGrid" class="skin-grid"></div>
+  </div>
+
+  <!-- REWARD -->
+  <div class="card shop">
+    <h3>Reward Video</h3>
+    <div id="rewardGrid" class="reward-grid"></div>
+  </div>
+
+  <!-- SECRET CODE -->
+  <div class="card shop">
+    <h3>Enter Secret Code</h3>
+    <input id="secretInput" placeholder="Secret code">
+    <button onclick="submitSecret()">Submit</button>
+    <div id="secretMsg"></div>
+  </div>
+
+  <!-- RESET & REBIRTH -->
+  <div class="card shop">
+    <h3>Reset & Rebirth</h3>
+    <button onclick="confirmReset()">RESET GAME</button>
+    <button onclick="buyRebirth()">REBIRTH</button>
+    <div id="rebirthInfo"></div>
+  </div>
+
+</div>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="video-modal hidden">
+  <div class="video-box">
+    <video id="rewardVideo" controls></video>
+    <button onclick="closeVideo()">Tutup</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
