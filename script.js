@@ -1,8 +1,23 @@
 const SAVE_KEY = "idle_clicker_save";
 
+const BASE_UPGRADES = {
+  cursor:{count:0,cps:1,cost:15},
+  oyo:{count:0,cps:5,cost:75},
+  lc:{count:0,cps:25,cost:250},
+  beli:{count:0,cps:100,cost:750},
+  sewa:{count:0,cps:250,cost:2000},
+  bikin:{count:0,cps:550,cost:3000},
+  remas:{count:0,cps:850,cost:5000},
+  dikocokin:{count:0,cps:2500,cost:10000},
+  basah:{count:0,cps:7500,cost:75000},
+  tribute:{count:0,cps:15000,cost:100000},
+  bareng:{count:0,cps:75000,cost:250000}
+};
+
 /* STATE */
 var score = 0;
-var clickMultiplier = 1;
+var baseClickMultiplier = 1;
+var talentBonusMultiplier = 1;
 var rebirthCount = 0;
 var currentSkin = "skin_0.jpg";
 
@@ -17,7 +32,7 @@ var upgrades = {
   dikocokin:{count:0,cps:2500,cost:10000},
   basah:{count:0,cps:7500,cost:75000},
   tribute:{count:0,cps:15000,cost:100000},
-  bareng:{count:0,cps:75000,cost:25000}
+  bareng:{count:0,cps:75000,cost:250000}
 };
 
 var talents = [
@@ -62,7 +77,7 @@ function skinCost(n){
 
 /* CLICK */
 function clickObject(e){
-  score += clickMultiplier;
+  score += baseClickMultiplier * talentBonusMultiplier;
   floatingText(e);
   checkUnlocks();
   updateUI(); saveGame();
@@ -71,7 +86,7 @@ function clickObject(e){
 function floatingText(e){
   var t=document.createElement("div");
   t.className="floating";
-  t.innerText="+"+clickMultiplier;
+  t.innerText="+"+(baseClickMultiplier * talentBonusMultiplier);
   t.style.left=e.clientX+"px";
   t.style.top=e.clientY+"px";
   document.body.appendChild(t);
@@ -92,13 +107,14 @@ function buyUpgrade(k){
 /* TALENT */
 function buyTalent(i){
   if(boughtTalents[i]) return;
-  if(score>=talents[i].cost){
-    score-=talents[i].cost;
-    boughtTalents[i]=true;
-    clickMultiplier*=3;
+  if(score >= talents[i].cost){
+    score -= talents[i].cost;
+    boughtTalents[i] = true;
+    talentBonusMultiplier *= 3; // bonus talent doang
     updateUI(); saveGame();
   }
 }
+
 
 function renderSecretSkins(){
   const g = document.getElementById("secretSkinGrid");
@@ -121,10 +137,7 @@ function renderSecretSkins(){
 
 /* REWARD */
 function rewardThreshold(i){
-  if(i===0) return 1000000;
-  if(i===1) return 1000000000;
-  if(i===2) return 1000000000000;
-  return Math.pow(10,6+i*3);
+  return Math.pow(10, 6 + i * 2);
 }
 
 function checkUnlocks(){
@@ -221,7 +234,8 @@ function renderTalents(){
 function saveGame(){
   localStorage.setItem(SAVE_KEY, JSON.stringify({
     score,
-    clickMultiplier,
+    baseClickMultiplier,
+    talentBonusMultiplier,
     rebirthCount,
     currentSkin,
     upgrades,
@@ -237,15 +251,18 @@ function loadGame(){
   if(!d) return;
 
   score = d.score || 0;
-  clickMultiplier = d.clickMultiplier || 1;
+  baseClickMultiplier = d.baseClickMultiplier || 1;
+  talentBonusMultiplier = d.talentBonusMultiplier || 1;
   rebirthCount = d.rebirthCount || 0;
   currentSkin = d.currentSkin || "skin_0.jpg";
-  upgrades = d.upgrades || upgrades;
+  upgrades = Object.assign(JSON.parse(JSON.stringify(BASE_UPGRADES)), d.upgrades || {});
   boughtTalents = d.boughtTalents || {};
   unlockedSkins = d.unlockedSkins || {0:true};
   unlockedRewards = d.unlockedRewards || {};
   unlockedSecrets = d.unlockedSecrets || {};
 }
+
+
 
 /* RESET */
 var resetArmed=false;
@@ -256,13 +273,24 @@ function confirmReset(){
 
 /* REBIRTH */
 function buyRebirth(){
-  var cost=10000000*Math.pow(2,rebirthCount);
-  if(score<cost) return alert("Score tidak cukup");
-  score=0; rebirthCount++; clickMultiplier*=2;
-  upgrades=JSON.parse(JSON.stringify(upgrades));
-  boughtTalents={}; unlockedSkins={0:true}; unlockedRewards={};
+  var cost = 10000000 * Math.pow(2, rebirthCount);
+  if(score < cost) return alert("Score tidak cukup");
+
+  score = 0;
+  rebirthCount++;
+
+  upgrades = JSON.parse(JSON.stringify(BASE_UPGRADES));
+  boughtTalents = {};
+  unlockedSkins = {0:true};
+  unlockedRewards = {};
+
+  baseClickMultiplier = Math.pow(2, rebirthCount); // bonus rebirth
+  talentBonusMultiplier = 1; // RESET TALENT BONUS
+
   updateUI(); saveGame();
 }
+
+
 
 /* VIDEO */
 function openVideo(i){
