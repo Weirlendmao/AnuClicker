@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ngocok Clicker (Fixed Full)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <div class="card" id="section-main">
+    <h3>Jumlah Crot</h3>
+    <div class="score" id="score">0</div>
+    <div class="click-area"><div id="floating-container"></div>
+      <button class="click-btn" id="clickBtn">
+        <img id="mainSkin" src="images/skin_0.jpg" alt="skin"/>
+      </button>
+    </div>
+    <div class="cps">Crot per detik: <span id="cps">0</span></div>
+  </div>
+
+  <div class="card shop" id="section-upgrade">
+    <h3>Upgrade</h3>
+    <div class="upgrade"><span>Foto Bugil</span><button data-up="cursor"><span id="cursorCost">15</span></button></div>
+    <div class="upgrade"><span>Hotel Oyo</span><button data-up="oyo"><span id="oyoCost">75</span></button></div>
+    <div class="upgrade"><span>LC</span><button data-up="lc"><span id="lcCost">250</span></button></div>
+    <div class="upgrade"><span>Beli Dildo</span><button data-up="beli"><span id="beliCost">750</span></button></div>
+    <div class="upgrade"><span>Sewa Lonte</span><button data-up="sewa"><span id="sewaCost">2000</span></button></div>
+    <div class="upgrade"><span>Bikin Video Blowjob</span><button data-up="bikin"><span id="bikinCost">3000</span></button></div>
+    <div class="upgrade"><span>Video Remas TeTe</span><button data-up="remas"><span id="remasCost">5000</span></button></div>
+    <div class="upgrade"><span>Kontolmu Dikocokin</span><button data-up="dikocokin"><span id="dikocokinCost">10000</span></button></div>
+    <div class="upgrade"><span>Remasin TeTe sampai basah</span><button data-up="basah"><span id="basahCost">50000</span></button></div>
+    <div class="upgrade"><span>Cum Tribute</span><button data-up="tribute"><span id="tributeCost">100000</span></button></div>
+    <div class="upgrade"><span>Mabuk Bareng</span><button data-up="bareng"><span id="barengCost">250000</span></button></div>
+    <div class="upgrade"><span>Video Colek Memek</span><button data-up="super"><span id="superCost">500000</span></button></div>
+    <div class="upgrade"><span>Crot di Mulut</span><button data-up="ultra"><span id="ultraCost">2000000</span></button></div>
+    <div class="upgrade"><span>Crot di TeTe</span><button data-up="mega"><span id="megaCost">7500000</span></button></div>
+    <div class="upgrade"><span>Colek Memeknya</span><button data-up="giga"><span id="gigaCost">25000000</span></button></div>
+    <div class="upgrade"><span>Memeknya Muncrat</span><button data-up="tera"><span id="teraCost">100000000</span></button></div>
+    <div class="upgrade"><span>Crot di muka</span><button data-up="peta"><span id="petaCost">400000000</span></button></div>
+    <div class="upgrade"><span>Pegang pegang pentil</span><button data-up="zeta"><span id="zetaCost">1500000000</span></button></div>
+    <div class="upgrade"><span>gosokin kontol ke pingang</span><button data-up="exa"><span id="exaCost">8000000000</span></button></div>
+    <div class="upgrade"><span>gosokin kontol ke paha</span><button data-up="nova"><span id="novaCost">40000000000</span></button></div>
+    <div class="upgrade"><span>gosokin kontol ke TeTe</span><button data-up="omega"><span id="omegaCost">250000000000</span></button></div>
+    <div class="upgrade"><span>gosokin kontol ke Kaki</span><button data-up="singularity"><span id="singularityCost">1200000000000</span></button></div>
+    <div class="upgrade"><span>crot diluar memek</span><button data-up="ascension"><span id="ascensionCost">7000000000000</span></button></div>
+    <div class="upgrade"><span>masukin ujung ke memek</span><button data-up="eternity"><span id="eternityCost">40000000000000</span></button></div>
+    <div class="upgrade"><span>masukin utuh ke memek</span><button data-up="apex"><span id="apexCost">250000000000000</span></button></div>
+    <div class="upgrade"><span>Ngewe sampai crot didalam</span><button data-up="infinity"><span id="infinityCost">1000000000000000</span></button></div>
+  </div>
+
+  <div class="card shop" id="section-talent">
+    <h3>Video Talent Ngewe (jumlah crot lebih banyak)</h3>
+    <div id="talentList" class="talent-grid"></div>
+  </div>
+
+  <div class="card shop" id="section-skin">
+    <h3>Skin Select</h3>
+    <label><input type="checkbox" id="skinFilter"> Unlocked only</label>
+    <div id="skinGrid" class="skin-grid"></div>
+  </div>
+
+  <div class="card shop" id="section-secret-skin">
+    <h3>Secret Skin</h3>
+    <div id="secretSkinGrid" class="skin-grid"></div>
+  </div>
+
+  <div class="card shop" id="section-reward">
+    <h3>Reward Video</h3>
+    <div id="rewardGrid" class="reward-grid"></div>
+  </div>
+
+  <div class="card shop" id="section-secret-code">
+    <h3>Enter Secret Code</h3>
+    <input id="secretInput" placeholder="Secret code">
+    <button id="submitSecretBtn">Submit</button>
+    <div id="secretMsg"></div>
+  </div>
+
+  
+  <div class="card shop" id="section-backup">
+    <h3>Backup Save</h3>
+    <button id="exportBtn">Export JSON</button>
+    <input type="file" id="importFile" accept=".json">
+  </div>
+
+  <div class="card shop" id="section-reset">
+    <h3>Reset & Rebirth</h3>
+    <button id="resetBtn">RESET GAME</button>
+    <button id="rebirthBtn">Rebirth (Cost: <span id="rebirthCost">?</span>)</button>
+    <div id="rebirthInfo"></div>
+  </div>
+</div>
+
+<div id="videoModal" class="video-modal hidden">
+  <div class="video-box">
+    <video id="rewardVideo" controls></video>
+    <button id="closeVideoBtn">Tutup</button>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <button data-tab="main" class="active">Main</button>
+  <button data-tab="upgrade">Upgrade</button>
+  <button data-tab="talent">Talent</button>
+  <button data-tab="skin">Skin</button>
+  <button data-tab="reward">Reward</button>
+  <button data-tab="reset">Reset</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
